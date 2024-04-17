@@ -53,19 +53,26 @@ module.exports = {
   // add deleteMessage middleware to find items in database based on ID number and delete message if it exists
   deleteMessage: async (req, res, next) => {
     // declare const {id} assigned to req.params (this would look like localhost:3000/messages/123 (id at the end))
-
+    const { id } = req.params;
     // within the try block...
     try {
-      // declare a const deleteMessage assigned to await findByIdAndDelete, passing in id 
-
+      // declare a const deletedMessage assigned to await findByIdAndDelete, passing in id 
+      const deletedMessage = await Message.findByIdAndDelete(id);
       // assign the deleted message as a propety on res.locals (messageDeleted: true and the message)
-
+      res.locals.deletedMessage = {
+        messageDeleted: true,
+        thisIsDeletedMessage: deletedMessage,
+      };
       // invoke and return next 
-
+      return next();
     // within the catch block...
     } catch {
       // invoke the global error handler with log, status and message properties 
+      return next({
+        log: 'Error occurred in messageController.deleteMessage middleware',
+        status: 400,
+        message: { err: 'An error occurred while trying to delete a message' },
+      });
     }
-      
   },
 };
