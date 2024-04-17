@@ -1,7 +1,6 @@
 // require the message model from the correct file
 const Message = require('../models/messageModel.js');
 
-
 // create these middleware functions as async functions using try and catch blocks!
 
 module.exports = {
