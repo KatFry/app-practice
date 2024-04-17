@@ -23,7 +23,7 @@ module.exports = {
       return next({
         log: 'Error occurred in messageController.postMessage middlware',
         status: 500,
-        message: { Error: 'unable to create message' },
+        message: { err: 'unable to create message' },
       });
     }
   },
@@ -34,15 +34,19 @@ module.exports = {
     try {
       // use .find method on Message to retrieve all the messages from the database 
       // the .find part can be empty because you're retrieving all the messages, not just one
-
+      const messages = await Message.find({});
       // assign messages as a property on res.locals
-
+      res.locals.messages = messages;
       // invoke and return next
-
+      return next();
     // within the catch block...
     } catch {
       // invoke the global error handler with log, status and message properties 
-
+      return next({
+        log: 'Error occurred in messageController.getMessages middleware',
+        status: 400,
+        message: { err: 'An error occurred while trying to get messages' },
+      });
     }
   },
 
