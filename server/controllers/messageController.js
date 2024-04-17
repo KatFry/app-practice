@@ -31,8 +31,19 @@ module.exports = {
   // add getMessages middleware to retrieve all items from the database and send them back as JSON
   getMessages: async (req, res, next) => {
     // within the try block...
+    try {
+      // use .find method on Message to retrieve all the messages from the database 
+      // the .find part can be empty because you're retrieving all the messages, not just one
 
+      // assign messages as a property on res.locals
 
+      // invoke and return next
+
+    // within the catch block...
+    } catch {
+      // invoke the global error handler with log, status and message properties 
+
+    }
   },
 
   // add deleteMessage middleware to find items in database based on ID number and delete message if it exists
