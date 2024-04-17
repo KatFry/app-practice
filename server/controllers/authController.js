@@ -24,6 +24,25 @@ authController.setCookie = async (req, res,  next) => {
   }
 };
 
+// implement checkCookie middleware that comes after a user deletes a message
+authController.setCookie = async (req, res, next) => {
+  // destructure password to be req.cookies and id to be req.params
+
+  // if no password is given, return a 400 error and 'password required' message
+
+  // within try block...
+  try {
+    // declare a const message assigned to awaiting finding the message by its id 
+
+    // if the message's password doesn't match passed-in password, return an error 'invalid credentials'
+
+    // invoke and return next otherwise 
+
+  } catch {
+    // 
+  }
+};
+
 
 
 // export the authController

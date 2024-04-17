@@ -17,7 +17,7 @@ module.exports = {
       // invoke and return next before moving to the next middleware function 
       return next();
     // within the catch block...
-    } catch {
+    } catch (err) {
       // invoke the global error handler with log, status and message properties
       return next({
         log: 'Error occurred in messageController.postMessage middlware',
@@ -39,7 +39,7 @@ module.exports = {
       // invoke and return next
       return next();
     // within the catch block...
-    } catch {
+    } catch (err) {
       // invoke the global error handler with log, status and message properties 
       return next({
         log: 'Error occurred in messageController.getMessages middleware',
@@ -65,7 +65,7 @@ module.exports = {
       // invoke and return next 
       return next();
     // within the catch block...
-    } catch {
+    } catch (err) {
       // invoke the global error handler with log, status and message properties 
       return next({
         log: 'Error occurred in messageController.deleteMessage middleware',
