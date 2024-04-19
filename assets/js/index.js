@@ -58,19 +58,19 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // declare a const saveButton assigned to using querySelector to find the id of save 
-
+  const saveButton = document.querySelector('#save');
   // add an event listener to the saveButton functionality (on click)
-
+  saveButton.addEventListener('click', async(e) => {
     // add in e.preventDefault() - look up what this does 
-
+    e.preventDefault();
     // declare a const password assigned to using querySelector to find the id of pass and its value
-
+    const password = document.querySelector('#pass').value;
     // declare a const newMessage assigned to using querySelector to find the id of desc and its value 
-
+    const newMessage = document.querySelector('#desc').value;
     // if either the password or newMessage are empty fields, return 
-
+    if (password === '' || newMessage === '') return;
     // declare a const msg assigned to passing in message and password 
-
+    const msg = { message: newMessage, password: password };
     // use a try/catch block to save the message 
 
       // declare a const response assigned to awaiting the fetch to /messages
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // in the catch block...
 
       // console log the error 
-
+  });
   // declare an async function deleteMessage that takes the id 
 
     // log 'invoking deleteMessage function with id:', id 
