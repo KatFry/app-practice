@@ -104,20 +104,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // try catch block
     try {
       // declare a const response assigned to awaiting a fetch to /messages/${id}
-
+      const response = await fetch(`/messages/${id}`, {
         // method is 'DELETE'
-
+        method: 'DELETE',
         // headers are Content-type application/json
-
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
       // if the response is ok, invoke getMessages 
-
+      if (response.ok) getMessages();
     } catch (err) {
-      // catch the error
-
       // log the error 
+      console.log('error in deleteMessage functionality', err);
     }
   };
-  
+
   // invoke getMessages
 
   // declare a setInterval, passing in getMessages and 2000 for every 2 seconds 
