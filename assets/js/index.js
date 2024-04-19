@@ -121,7 +121,9 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // invoke getMessages
-
+  getMessages();
   // declare a setInterval, passing in getMessages and 2000 for every 2 seconds 
-
+  setInterval(async () => {
+    await getMessages();
+  }, 2000);
 });
