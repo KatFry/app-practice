@@ -5,25 +5,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // within the try block...
     try {
       // declare a const response assigned to awaiting fetch to /messages (default is GET request)
-
+      const response = await fetch('/messages');
       // declare a const receivedMessages assigned to awaiting the response converted to json
-
+      const receivedMessages = await response.json();
       // if the response is not ok, throw a new Error 'response error'
-
+      if (!response.ok) throw new Error('response error in getMessages');
       // declare a const messageList assigned to using the querySelector method on the document for message-list id
-
+      const messageList = document.querySelector('#message-list');
       // loop over the receivedMessages using a forEach 
-
+      receivedMessages.forEach((message) => {
         // if there is NOT an HTML element withthe _id prop on message
-
+        if (!document.getElementById(message._id)) {
           // if not, create a 'li' item for that message (assigned to const listItem)
-
+          const listItem = document.createElement('li');
           // assign textContent in each listItem to the message (use message.message)
-
+          listItem.textContent = message.message;
           // give each listItem an id property assigned to message id 
+          listItem.id = message._id;
 
           // add a deleteButton property assigned to creating a 'button' element 
-
+          
           // setAttributes of button ('class', 'del') and textContent of 'Delete'
 
           // append the deleteButtonto the listItem and the listItem to the messageList
@@ -41,7 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
               // remove it
 
               // log 'list item removed from the DOM'
-
+        }
+        
+      })
+        
     // within the catch block...
     } catch (err) {
       // log 'error occurred in getMessages' and the error 
@@ -104,5 +108,5 @@ document.addEventListener('DOMContentLoaded', () => {
   // invoke getMessages
 
   // declare a setInterval, passing in getMessages and 2000 for every 2 seconds 
-  
+
 });
