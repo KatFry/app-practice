@@ -72,24 +72,30 @@ document.addEventListener('DOMContentLoaded', () => {
     // declare a const msg assigned to passing in message and password 
     const msg = { message: newMessage, password: password };
     // use a try/catch block to save the message 
-
+    try {
       // declare a const response assigned to awaiting the fetch to /messages
-
+      const response = await fetch('/messages', {
         // method is POST request
-
+        method: 'POST',
         // headers are Content-type. application/json
-
+        headers: {
+          'Content-Type': 'application/json',
+        },
         // body is JSON.stringify the msg 
-
+        body: JSON.stringify(msg),
+      });
       // declare a const data assigned to awaiting the response converted to json 
-
+      const data = await response.json();
       // invoke getMessages 
-
+      getMessages();
       // reassign values of pass and desc to empty strings 
-      
-    // in the catch block...
-
+      document.querySelector('#pass').value = '';
+      document.querySelector('#desc').value = '';
+      // in the catch block...
+    } catch (err) {
       // console log the error 
+      console.log('error in save message functionality', err);
+    }
   });
   // declare an async function deleteMessage that takes the id 
 
