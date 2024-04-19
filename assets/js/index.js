@@ -98,11 +98,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   // declare an async function deleteMessage that takes the id 
-
+  const deleteMessage = async (id) => {
     // log 'invoking deleteMessage function with id:', id 
-
+    console.log('invoking deleteMessage function with id:', id);
     // try catch block
-
+    try {
       // declare a const response assigned to awaiting a fetch to /messages/${id}
 
         // method is 'DELETE'
@@ -111,11 +111,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // if the response is ok, invoke getMessages 
 
-    // catch the error
+    } catch (err) {
+      // catch the error
 
       // log the error 
-  
-  
+    }
+  };
   
   // invoke getMessages
 
